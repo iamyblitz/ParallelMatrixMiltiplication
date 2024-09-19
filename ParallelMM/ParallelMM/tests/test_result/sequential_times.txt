@@ -1,0 +1,17 @@
+Sequential execution time: 1672.3429 ms
+Sequential execution time: 2.7233 ms
+Sequential execution time: 1695.2396 ms
+Sequential execution time: 3.0464 ms
+Sequential execution time: 1777.3549 ms
+Sequential execution time: 1823.6519 ms
+Sequential execution time: 1.6743 ms
+Sequential execution time: 1610.8068 ms
+Sequential execution time: 2129.7163 ms
+Sequential execution time: 2.2056 ms
+Sequential execution time: 2927.239 ms
+Sequential execution time: 2427.3344 ms
+Sequential execution time: 4.5927 ms
+Sequential execution time: 2257.3089 ms
+Sequential execution time: 2123.6247 ms
+Sequential execution time: 2.1338 ms
+Sequential execution time: 2903.1932 ms
