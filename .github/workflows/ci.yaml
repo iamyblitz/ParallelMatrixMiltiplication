@@ -1,24 +1,25 @@
 name: CI 
 
-
 on:
   push:
     branches:
-      - '*'
+      - ParallelMatrixMultiplication
+      - main
   pull_request:
     branches:
-      - '*'
+      - ParallelMatrixMultiplication
+      - main
 
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
 
     steps:
-      
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: ParallelMatrixMultiplication 
       
-     
       - name: Set up .NET
         uses: actions/setup-dotnet@v3
         with:
@@ -26,13 +27,16 @@ jobs:
       
      
       - name: Restore dependencies
-        run: dotnet restore
-      
+        run: dotnet restore ParallelMM/ParallelMM.csproj  
       
       - name: Build project
-        run: dotnet build --configuration Release
-      
+        run: dotnet build ParallelMM/ParallelMM.csproj --configuration Release
       
       - name: Run tests
-        run: dotnet test --configuration Release --no-build --logger:"trx;LogFileName=test_results.trx"
-
+        run: dotnet test ParallelMM/ParallelMM.csproj --configuration Release --no-build --logger:"trx;LogFileName=test_results.trx"
+      
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: Test Results
+          path: '**/TestResults/*.trx'
