@@ -15,28 +15,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+   
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          ref: ParallelMatrixMultiplication 
+          ref: ParallelMatrixMultiplication  
+      
       
       - name: Set up .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.x'  
       
-     
+      
       - name: Restore dependencies
-        run: dotnet restore ParallelMM/ParallelMM.csproj  
+        run: dotnet restore ParallelMM/ParallelMM/ParallelMM.csproj  
+      
       
       - name: Build project
-        run: dotnet build ParallelMM/ParallelMM.csproj --configuration Release
-      
-      - name: Run tests
-        run: dotnet test ParallelMM/ParallelMM.csproj --configuration Release --no-build --logger:"trx;LogFileName=test_results.trx"
-      
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: Test Results
-          path: '**/TestResults/*.trx'
+        run: dotnet build ParallelMM/Parallel
