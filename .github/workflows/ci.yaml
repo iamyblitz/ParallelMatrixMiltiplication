@@ -1,32 +1,38 @@
-name: CI
+name: CI 
+
 
 on:
   push:
     branches:
-      - main
+      - '*'
   pull_request:
     branches:
-      - main
+      - '*'
 
 jobs:
-  build:
+  build_and_test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 7.0.x
-
-    - name: Restore dependencies
-      run: dotnet restore
-
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-
-    - name: Run tests
-      run: dotnet test --no-restore --verbosity normal
+      
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+     
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'  
+      
+     
+      - name: Restore dependencies
+        run: dotnet restore
+      
+      
+      - name: Build project
+        run: dotnet build --configuration Release
+      
+      
+      - name: Run tests
+        run: dotnet test --configuration Release --no-build --logger:"trx;LogFileName=test_results.trx"
 
